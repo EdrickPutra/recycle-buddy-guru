@@ -9,7 +9,156 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      ideas: {
+        Row: {
+          cover_image_url: string | null
+          created_at: string | null
+          description: string
+          difficulty_level: number | null
+          id: string
+          instructions: string
+          is_featured: boolean | null
+          time_required: number | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          cover_image_url?: string | null
+          created_at?: string | null
+          description: string
+          difficulty_level?: number | null
+          id?: string
+          instructions: string
+          is_featured?: boolean | null
+          time_required?: number | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          cover_image_url?: string | null
+          created_at?: string | null
+          description?: string
+          difficulty_level?: number | null
+          id?: string
+          instructions?: string
+          is_featured?: boolean | null
+          time_required?: number | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      ideas_tags: {
+        Row: {
+          idea_id: string
+          tag_id: string
+        }
+        Insert: {
+          idea_id: string
+          tag_id: string
+        }
+        Update: {
+          idea_id?: string
+          tag_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ideas_tags_idea_id_fkey"
+            columns: ["idea_id"]
+            isOneToOne: false
+            referencedRelation: "ideas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ideas_tags_tag_id_fkey"
+            columns: ["tag_id"]
+            isOneToOne: false
+            referencedRelation: "tags"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      items: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          difficulty_level: number | null
+          id: string
+          image_url: string | null
+          material_type: string
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          difficulty_level?: number | null
+          id?: string
+          image_url?: string | null
+          material_type: string
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          difficulty_level?: number | null
+          id?: string
+          image_url?: string | null
+          material_type?: string
+          name?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      items_ideas: {
+        Row: {
+          idea_id: string
+          item_id: string
+        }
+        Insert: {
+          idea_id: string
+          item_id: string
+        }
+        Update: {
+          idea_id?: string
+          item_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "items_ideas_idea_id_fkey"
+            columns: ["idea_id"]
+            isOneToOne: false
+            referencedRelation: "ideas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "items_ideas_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tags: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
